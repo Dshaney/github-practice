@@ -21,18 +21,23 @@ function display(projects) {
   });
   for (let project of sorted) {
     console.log(
-    `(${project.stargazers_count} ) ${project.name}: ${project.description}`
+      `(${project.stargazers_count} ) ${project.name}: ${project.description}`
     );
   }
 }
 function main() {
-    try {
-  const resp = await input.text("What is your user name?");
-  const respo = await github(resp);
-  display(respo);
-  } catch (err) {
-    console.log(err);
-}
+    let err = 1;
+    while (true) {
+        try {
+          const resp = await input.text("What is your user name?");
+          const respos = await github(resp);
+          display(respos);
+        } catch (err) {
+          console.log(err.message);
+        }
+        console.log(err)
+        break;
+    }
 }
 
 main();
