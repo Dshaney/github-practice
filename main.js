@@ -26,9 +26,13 @@ function display(projects) {
   }
 }
 function main() {
+    try {
   const resp = await input.text("What is your user name?");
   const respo = await github(resp);
   display(respo);
+  } catch (err) {
+    console.log(err);
+}
 }
 
 main();
